@@ -20,7 +20,7 @@ albedo_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_6tisa"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -26.405573, 0, 6.0292697, -0.45098114, 0, 0.5154114, 0.45098114, 0, -0.5154114, 14.408487, 0, 5.9004183, 0.35435486, 0, 0.61204576, -0.35435486, 0, -0.61204576, 14.408476, 0, -1.7985212, 0.4187641, 0, 0.5798335, -0.4187641, 0, -0.5798335, -9.97686, 0, -1.7663089, 0, 0, 0, 0, 0, 0, -10.009073, 0, -6.018441),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -26.405573, 0, 6.0292697, -0.35662556, -0.08405638, 0.41046238, 0.35662556, 0.08405638, -0.41046238, 14.408487, 0, 5.9004183, 0.35435486, 0, 0.61204576, -0.35435486, 0, -0.61204576, 14.408476, 0, -1.7985212, 0.4187641, 0, 0.5798335, -0.4187641, 0, -0.5798335, -9.97686, 0, -1.7663089, 0, 0, 0, 0, 0, 0, -10.009073, 0, -6.018441),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -52,3 +52,45 @@ data = {
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_6tisa")
+
+[node name="Road" type="CSGPolygon3D" parent="Path3D"]
+polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="LeftEdge" type="CSGPolygon3D" parent="Path3D"]
+polygon = PackedVector2Array(-1.1, 0, -1.1, 0.15, -0.9, 0.15, -0.9, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="RightEdge" type="CSGPolygon3D" parent="Path3D"]
+polygon = PackedVector2Array(0.9, 0, 0.9, 0.15, 1.1, 0.15, 1.1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
