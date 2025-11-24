@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://c06t4jyybkkae"]
+
+[ext_resource type="MeshLibrary" uid="uid://b5vdn7cnsmxfj" path="res://mesh library/SpaceLibrary.tres" id="1_6tisa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rlb1v"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_6tisa"]
+sky_material = SubResource("ProceduralSkyMaterial_rlb1v")
+
+[sub_resource type="Environment" id="Environment_dbkse"]
+background_mode = 2
+sky = SubResource("Sky_6tisa")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tisa"]
+albedo_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_6tisa"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -26.405573, 0, 6.0292697, -0.45098114, 0, 0.5154114, 0.45098114, 0, -0.5154114, 14.408487, 0, 5.9004183, 0.35435486, 0, 0.61204576, -0.35435486, 0, -0.61204576, 14.408476, 0, -1.7985212, 0.4187641, 0, 0.5798335, -0.4187641, 0, -0.5798335, -9.97686, 0, -1.7663089, 0, 0, 0, 0, 0, 0, -10.009073, 0, -6.018441),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="BaseLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dbkse")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(100, 2, 100)
+material = SubResource("StandardMaterial3D_6tisa")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.4226183, 0.90630794, 0, -0.90630794, 0.4226183, 0, 14.5, 9.5)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_6tisa")
+cell_size = Vector3(4, 4, 4)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65535, 65534, 0, 65535, 2, 0, 65531, 65535, 0, 4, 65535, 0, 65531, 2, 0, 65533, 2, 0, 65534, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 4, 65534, 0, 3, 65534, 0, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 65534, 65534, 0, 65532, 65534, 0, 65531, 65534, 0, 65531, 0, 0, 65532, 2, 0, 65532, 65535, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 65532, 0, 0)
+}
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_6tisa")
