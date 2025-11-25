@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c06t4jyybkkae"]
+[gd_scene load_steps=8 format=3 uid="uid://c06t4jyybkkae"]
 
 [ext_resource type="MeshLibrary" uid="uid://b5vdn7cnsmxfj" path="res://mesh library/SpaceLibrary.tres" id="1_6tisa"]
+[ext_resource type="PackedScene" uid="uid://dy8v6xnkbj4vx" path="res://scenes/enemy/enemy.tscn" id="2_dbkse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rlb1v"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,7 +21,7 @@ albedo_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_6tisa"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -26.405573, 0, 6.0292697, -0.35662556, -0.08405638, 0.41046238, 0.35662556, 0.08405638, -0.41046238, 14.408487, 0, 5.9004183, 0.35435486, 0, 0.61204576, -0.35435486, 0, -0.61204576, 14.408476, 0, -1.7985212, 0.4187641, 0, 0.5798335, -0.4187641, 0, -0.5798335, -9.97686, 0, -1.7663089, 0, 0, 0, 0, 0, 0, -10.009073, 0, -6.018441),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -26.405573, 0, 6.0292697, -0.35662556, -0.08405638, 0.41046238, 0.35662556, 0.08405638, -0.41046238, 14.408487, 0, 5.9004183, 0.17480278, 0.022619247, 0.37998283, -0.17480278, -0.022619247, -0.37998283, 14.408476, 0, -1.7985212, 1.0023136, -0.0005092621, 0.42253745, -1.0023136, 0.0005092621, -0.42253745, -9.97686, 0, -1.7663089, 0, 0, 0, 0, 0, 0, -10.009073, 0, -6.018441),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -94,3 +95,6 @@ path_local = false
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
+
+[node name="Enemy" parent="Path3D" instance=ExtResource("2_dbkse")]
+transform = Transform3D(-0.0069602854, 0.0020775187, -0.99996036, -2.3282752e-10, 0.99998546, 0.0020775672, 0.9999623, 1.4460902e-05, -0.006960272, -26.405573, 0, 6.0292697)
