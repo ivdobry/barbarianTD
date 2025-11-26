@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c06t4jyybkkae"]
+[gd_scene load_steps=10 format=3 uid="uid://c06t4jyybkkae"]
 
 [ext_resource type="MeshLibrary" uid="uid://b5vdn7cnsmxfj" path="res://mesh library/SpaceLibrary.tres" id="1_6tisa"]
+[ext_resource type="PackedScene" uid="uid://7bcpu5hp5ibu" path="res://scenes/camera/ray_picker_camera.tscn" id="1_oox4p"]
 [ext_resource type="PackedScene" uid="uid://dy8v6xnkbj4vx" path="res://scenes/enemy/enemy.tscn" id="2_dbkse"]
 [ext_resource type="PackedScene" uid="uid://cg0un1v8vp4ep" path="res://scenes/base/base.tscn" id="3_0n1tn"]
 
@@ -41,8 +42,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(100, 2, 100)
 material = SubResource("StandardMaterial3D_6tisa")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="RayPickerCamera" parent="." node_paths=PackedStringArray("grid_map") instance=ExtResource("1_oox4p")]
 transform = Transform3D(1, 0, 0, 0, 0.4226183, 0.90630794, 0, -0.90630794, 0.4226183, 0, 14.5, 9.5)
+grid_map = NodePath("../GridMap")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_6tisa")
@@ -101,7 +103,7 @@ path_joined = false
 transform = Transform3D(-0.0069602854, 0.0020775187, -0.99996036, -2.3282752e-10, 0.99998546, 0.0020775672, 0.9999623, 1.4460902e-05, -0.006960272, -26.405573, 0, 6.0292697)
 
 [node name="Enemy2" parent="Path3D" instance=ExtResource("2_dbkse")]
-transform = Transform3D(-0.0055262498, 0.0017830286, -0.99996984, -2.7713459e-06, 0.999986, 0.0017830696, 0.9999712, 1.2625133e-05, -0.005526237, -21.405851, -0.009489734, 6.059698)
+transform = Transform3D(-0.0055262498, 0.0017830278, -0.99996936, -2.7713459e-06, 0.9999855, 0.0017830688, 0.9999712, 1.2625127e-05, -0.005526235, -21.405851, -0.009489734, 6.059698)
 progress = 5.0
 
 [node name="Enemy3" parent="Path3D" instance=ExtResource("2_dbkse")]
@@ -113,7 +115,7 @@ transform = Transform3D(-0.0033878083, 0.0013439506, -0.9999801, -6.113934e-06, 
 progress = 15.0
 
 [node name="Enemy5" parent="Path3D" instance=ExtResource("2_dbkse")]
-transform = Transform3D(-0.0019695999, 0.0010527103, -0.9999842, -7.815961e-06, 0.99998707, 0.0010527269, 0.9999845, 9.889431e-06, -0.001969591, -6.40581, -0.0312357, 6.1182404)
+transform = Transform3D(-0.001969599, 0.0010527103, -0.9999842, -7.815957e-06, 0.99998707, 0.0010527269, 0.999984, 9.889431e-06, -0.001969591, -6.40581, -0.0312357, 6.1182404)
 progress = 20.0
 
 [node name="Base" parent="." instance=ExtResource("3_0n1tn")]
