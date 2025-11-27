@@ -44,9 +44,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(100, 2, 100)
 material = SubResource("StandardMaterial3D_6tisa")
 
-[node name="RayPickerCamera" parent="." node_paths=PackedStringArray("grid_map") instance=ExtResource("1_oox4p")]
+[node name="RayPickerCamera" parent="." node_paths=PackedStringArray("grid_map", "turret_manager") instance=ExtResource("1_oox4p")]
 transform = Transform3D(1, 0, 0, 0, 0.4226183, 0.90630794, 0, -0.90630794, 0.4226183, 0, 14.5, 9.5)
 grid_map = NodePath("../GridMap")
+turret_manager = NodePath("../TurretManager")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_6tisa")
@@ -105,7 +106,7 @@ path_joined = false
 transform = Transform3D(-0.0069602854, 0.0020775187, -0.99996036, -2.3282752e-10, 0.99998546, 0.0020775672, 0.9999623, 1.4460902e-05, -0.006960272, -26.405573, 0, 6.0292697)
 
 [node name="Enemy2" parent="Path3D" instance=ExtResource("2_dbkse")]
-transform = Transform3D(-0.0055262498, 0.0017830273, -0.9999691, -2.7713459e-06, 0.9999853, 0.0017830683, 0.9999712, 1.2625124e-05, -0.0055262335, -21.405851, -0.009489734, 6.059698)
+transform = Transform3D(-0.0055262498, 0.001783027, -0.99996895, -2.7713459e-06, 0.9999851, 0.0017830681, 0.9999712, 1.2625122e-05, -0.0055262325, -21.405851, -0.009489734, 6.059698)
 progress = 5.0
 
 [node name="Enemy3" parent="Path3D" instance=ExtResource("2_dbkse")]
@@ -117,7 +118,7 @@ transform = Transform3D(-0.0033878083, 0.0013439506, -0.9999801, -6.113934e-06, 
 progress = 15.0
 
 [node name="Enemy5" parent="Path3D" instance=ExtResource("2_dbkse")]
-transform = Transform3D(-0.0019695982, 0.0010527103, -0.9999842, -7.8159555e-06, 0.99998707, 0.0010527269, 0.9999838, 9.889431e-06, -0.001969591, -6.40581, -0.0312357, 6.1182404)
+transform = Transform3D(-0.001969598, 0.0010527103, -0.9999842, -7.815954e-06, 0.99998707, 0.0010527269, 0.9999836, 9.889431e-06, -0.001969591, -6.40581, -0.0312357, 6.1182404)
 progress = 20.0
 
 [node name="Base" parent="." instance=ExtResource("3_0n1tn")]
