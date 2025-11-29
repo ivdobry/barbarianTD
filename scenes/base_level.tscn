@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c06t4jyybkkae"]
+[gd_scene load_steps=16 format=3 uid="uid://c06t4jyybkkae"]
 
 [ext_resource type="MeshLibrary" uid="uid://b5vdn7cnsmxfj" path="res://mesh library/SpaceLibrary.tres" id="1_6tisa"]
 [ext_resource type="PackedScene" uid="uid://7bcpu5hp5ibu" path="res://scenes/camera/ray_picker_camera.tscn" id="1_oox4p"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://bl8hur2mshjhs" path="res://scenes/enemy_path.gd" id="3_3aqo6"]
 [ext_resource type="Script" uid="uid://cjjygukrxx8e3" path="res://scenes/turret_manager.gd" id="5_k2uud"]
 [ext_resource type="PackedScene" uid="uid://sgdja3wa56la" path="res://scenes/turret/turret.tscn" id="6_3aqo6"]
+[ext_resource type="Script" uid="uid://c4wr67473li81" path="res://scenes/bank.gd" id="8_earhg"]
+[ext_resource type="PackedScene" uid="uid://t03vgymfn0nx" path="res://scenes/difficulty_manager/difficulty_manager.tscn" id="9_u6ue0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rlb1v"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,6 +32,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_rlct4"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node3D"]
 
@@ -58,10 +65,11 @@ data = {
 "cells": PackedInt32Array(65535, 65534, 0, 65535, 2, 0, 65531, 65535, 0, 4, 65535, 0, 65531, 2, 0, 65533, 2, 0, 65534, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 4, 65534, 0, 3, 65534, 0, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 65534, 65534, 0, 65532, 65534, 0, 65531, 65534, 0, 65531, 0, 0, 65532, 2, 0, 65532, 65535, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 65532, 0, 0)
 }
 
-[node name="EnemyPath" type="Path3D" parent="."]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("dificulty_manager")]
 curve = SubResource("Curve3D_6tisa")
 script = ExtResource("3_3aqo6")
 enemy_scene = ExtResource("2_dbkse")
+dificulty_manager = NodePath("../DifficultyManager")
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
@@ -72,7 +80,7 @@ path_interval = 0.5
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -86,7 +94,7 @@ path_interval = 0.5
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -100,7 +108,7 @@ path_interval = 0.5
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -111,10 +119,34 @@ autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_0n1tn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
+max_health = 50
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("5_k2uud")
 turret = ExtResource("6_3aqo6")
 enemy_path = NodePath("../EnemyPath")
 
+[node name="Bank" type="MarginContainer" parent="." groups=["bank"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("8_earhg")
+
+[node name="Label" type="Label" parent="Bank"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_rlct4")
+
+[node name="DifficultyManager" parent="." instance=ExtResource("9_u6ue0")]
+
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="_spawn_enemy"]
+[connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
