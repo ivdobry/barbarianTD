@@ -28,10 +28,11 @@ func _find_best_target() -> PathFollow3D:
 	var best_target = null
 	var best_progress := 0
 	for enemy in enemy_path.get_children():
-		var distance = global_position.distance_to(enemy.global_position)
-		if enemy is PathFollow3D and distance <= turret_range:
+		if enemy is PathFollow3D:
 			if enemy.progress > best_progress:
-				best_target = enemy
-				best_progress = enemy.progress
+				var distance = global_position.distance_to(enemy.global_position)
+				if distance <= turret_range:
+						best_target = enemy
+						best_progress = enemy.progress
 		
 	return best_target

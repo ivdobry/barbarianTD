@@ -117,4 +117,4 @@ script = ExtResource("5_k2uud")
 turret = ExtResource("6_3aqo6")
 enemy_path = NodePath("../EnemyPath")
 
-[connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="_on_timer_timeout"]
+[connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="_spawn_enemy"]
