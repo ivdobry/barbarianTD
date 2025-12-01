@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c06t4jyybkkae"]
+[gd_scene load_steps=20 format=3 uid="uid://c06t4jyybkkae"]
 
 [ext_resource type="MeshLibrary" uid="uid://b5vdn7cnsmxfj" path="res://mesh library/SpaceLibrary.tres" id="1_6tisa"]
 [ext_resource type="PackedScene" uid="uid://7bcpu5hp5ibu" path="res://scenes/camera/ray_picker_camera.tscn" id="1_oox4p"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bl8hur2mshjhs" path="res://scenes/enemy_path.gd" id="3_3aqo6"]
 [ext_resource type="Script" uid="uid://cjjygukrxx8e3" path="res://scenes/turret_manager.gd" id="5_k2uud"]
 [ext_resource type="PackedScene" uid="uid://sgdja3wa56la" path="res://scenes/turret/turret.tscn" id="6_3aqo6"]
+[ext_resource type="FontFile" uid="uid://bwmsgxc28xhoi" path="res://assets/Asap/static/Asap-Bold.ttf" id="8_b0lsh"]
 [ext_resource type="Script" uid="uid://c4wr67473li81" path="res://scenes/bank.gd" id="8_earhg"]
 [ext_resource type="PackedScene" uid="uid://t03vgymfn0nx" path="res://scenes/difficulty_manager/difficulty_manager.tscn" id="9_u6ue0"]
 [ext_resource type="PackedScene" uid="uid://befefqw4fkhya" path="res://scenes/user_interface/victory_layer.tscn" id="10_fal5o"]
@@ -36,6 +37,9 @@ point_count = 5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fal5o"]
 albedo_color = Color(0.3665946, 0.3665946, 0.36659458, 1)
+
+[sub_resource type="Theme" id="Theme_v4w7n"]
+default_font = ExtResource("8_b0lsh")
 
 [sub_resource type="LabelSettings" id="LabelSettings_rlct4"]
 font_size = 64
@@ -125,7 +129,6 @@ autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_0n1tn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
-max_health = 50
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("5_k2uud")
@@ -139,6 +142,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_v4w7n")
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -151,6 +155,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Placeholder"
 label_settings = SubResource("LabelSettings_rlct4")
+uppercase = true
 
 [node name="DifficultyManager" parent="." instance=ExtResource("9_u6ue0")]
 
