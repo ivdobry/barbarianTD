@@ -1,19 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cg0un1v8vp4ep"]
 
 [ext_resource type="Script" uid="uid://t3oixl7r167c" path="res://scenes/base/base.gd" id="1_yoymw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7pcx"]
-albedo_color = Color(0.9722006, 0.44084123, 0.5773652, 1)
+[ext_resource type="PackedScene" uid="uid://cxsvw8lah040j" path="res://assets/Base.glb" id="2_ccqok"]
 
 [node name="Base" type="Node3D" groups=["base"]]
 script = ExtResource("1_yoymw")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-radius = 2.0
-height = 4.0
-sides = 32
-material = SubResource("StandardMaterial3D_e7pcx")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
@@ -21,3 +12,5 @@ billboard = 1
 text = "5/5"
 font_size = 500
 outline_size = 100
+
+[node name="Base" parent="." instance=ExtResource("2_ccqok")]
